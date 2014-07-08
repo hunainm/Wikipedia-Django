@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{%  load staticfiles %}
+<html>  
+    <head>
+        <title>{% for i in data%}{{ i.title }}{% endfor %}</title>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" href="{% static 'css/wiki.css' %}" type="text/css">
+        <script src="{% static 'js/wiki.js' %}" type="text/javascript"></script>
+        <script type="text/javascript">
+
+
+        </script>
+        
+    </head>
+    
+    <body onload="viewText();" >
+        <div id="mw-page-base"></div>
+        <div id="mw-head-base"></div>
+        
+        <div id="content" role="main">
+            <h1 id="firstHeading" class="firstHeading" lang="en">
+                <span dir="auto">Log in</span>
+            </h1>    
+            <div id="bodyContent">
+                {% if error %}
+                <table class="metadata plainlinks ambox ambox-protection" >
+                    <tbody>
+                        <tr>
+                            <td class="mbox-image">
+                                <div style="width:52px;">
+                                    <img src="{% static 'css/images2/Caution.png' %}" width="40" height="40" >
+                                </div>
+                            </td>
+                            <td class="mbox-text" style="font-weight:bold; font-size:130%;;">
+                                <span class="mbox-text-span">{{ error }} &nbsp&nbsp
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                {% endif %}
+                <div id="contentSub"></div>
+                <div id="mw-content-text">
+                    <div class="mw-ui-container">
+                        <div id="userloginForm">
+
+                            <form name="createUser" id="createUser" class="mw-ui-vform" method="post" action="/authenticate/">{% csrf_token %}
+                                <section class="mw-form-header"></section>
+
+                                <div>
+                                    <label for="username">Username</label>
+                                    <input class="mw-input loginText" id="username" required="true" name="username" tabindex="1" size="20" placeholder="Enter your username" name="wpName">
+                                </div>
+                                <div></div>
+                                <div class="mw-row-password">
+                                    <label for="password">Password</label>
+                                    <input class="mw-input loginPassword" required="true" id="password" name="password" tabindex="3" size="20" placeholder="Enter a password" type="password" name="wpPassword">
+                                </div>
+                                <div>
+				                    <input id="LoginAttempt" tabindex="6" class="mw-ui-button mw-ui-big mw-ui-block mw-ui-primary" type="submit" value="Log in" name="LoginAttempt">
+                                </div>
+                                <div id="mw-createaccount-cta">
+						            <h3 id="mw-userloginlink">Don't have an account?<a href="/CreateAccount/" id="mw-createaccount-join" tabindex="7" class="mw-ui-button mw-ui-constructive">Join Wikipedia</a></h3>
+					            </div>
+                                </form>
+                        </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+            </div>
+        </div></div>
+
+         <div id="mw-navigation">
+            <div id="mw-head">
+                <div id="p-personal" role="navigation" class="" aria-labelledby="p-personal-label">
+	                <ul>
+                        <li id="pt-createaccount"><a href="/CreateAccount/">Create account</a></li>
+                        <li id="pt-login"><a href="" title="You're encouraged to log in; however, it's not mandatory. [alt-shift-o]" accesskey="o">Log in</a></li>
+                    </ul>
+                </div>
+                <div id="left-navigation">
+                    <div id="p-namespaces" role="navigation" class="vectorTabs" aria-labelledby="p-namespaces-label">
+                    	<ul>
+					        <li id="ca-nstab-main" class="selected"><span><a href="" title="This is a special page which you cannot edit" accesskey="c">Special page</a></span></li>
+					        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div id="mw-panel" class="collapsible-nav">
+                <div id="p-logo" role="banner">
+                    <a style="background-image: url({% static 'css/images2/Wiki.png' %});" href="/wiki/Main_Page" title="Visit the main page"></a>
+                </div>
+                <div class="portal first persistent" role="navigation" id="p-navigation" aria-labelledby="p-navigation-label">
+                    <div class="body">
+                        <ul>
+                            <li id="n-mainpage-description"><a href="/wikipedia/Main_Page" title="Visit the main page [alt-shift-z]" accesskey="z">Main page</a></li>
+                            <li id="n-contents"><a href="/wikipedia/Portal:Contents" title="Guides to browsing Wikipedia">Contents</a></li>
+                            <li id="n-featuredcontent"><a href="/wikipedia/Portal:Featured_content" title="Featured content – the best of Wikipedia">Featured content</a></li>
+                            <li id="n-currentevents"><a href="/wikipedia/Portal:Current_events" title="Find background information on current events">Current events</a></li>
+                            <li id="n-randompage"><a href="/wikipedia/Random" title="Load a random article [alt-shift-x]" accesskey="x">Random article</a></li>
+                            <li id="n-sitesupport"><a href="" title="Support us">Donate to Wikipedia</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="portal collapsed" role="navigation" id="p-interaction" aria-labelledby="p-interaction-label">
+                    <h3 id="p-interaction-label" tabindex="2"><a href="javascript:ShowDiv('p-interactionBody','p-interaction');">Interaction</a></h3>
+                    <div class="body" style="display:none;" id="p-interactionBody">
+                        <ul id="p-interaction-list">
+                            <li id="n-help"><a href="/wiki/Help:Contents" title="Guidance on how to use and edit Wikipedia">Help</a></li>
+                            <li id="n-aboutsite"><a href="/wiki/Wikipedia:About" title="Find out about Wikipedia">About Wikipedia</a></li>
+                            <li id="n-portal"><a href="/wiki/Wikipedia:Community_portal" title="About the project, what you can do, where to find things">Community portal</a></li>
+                            <li id="n-recentchanges"><a href="/wiki/Special:RecentChanges" title="A list of recent changes in the wiki [alt-shift-r]" accesskey="r">Recent changes</a></li>
+                            <li id="n-contactpage"><a href="//en.wikipedia.org/wiki/Wikipedia:Contact_us">Contact page</a></li>
+                        </ul>
+                    </div>
+                </div>
+               <div class="portal collapsed" role="navigation" id="p-tb" aria-labelledby="p-tb-label">
+                    <h3 id="p-tb-label" tabindex="3"><a href="javascript:ShowDiv('p-tbBody','p-tb');">Tools</a></h3>
+                    <div class="body" style="display:none" id="p-tbBody">
+                        <ul id="p-tb-list">
+                            <li id="t-whatlinkshere"><a href="/wiki/Special:WhatLinksHere/Earth" title="List of all English Wikipedia pages containing links to this page [alt-shift-j]" accesskey="j">What links here</a></li>
+                            <li id="t-recentchangeslinked"><a href="/wiki/Special:RecentChangesLinked/Earth" title="Recent changes in pages linked from this page [alt-shift-k]" accesskey="k">Related changes</a></li>
+                            <li id="t-upload"><a href="/wiki/Wikipedia:File_Upload_Wizard" title="Upload files [alt-shift-u]" accesskey="u">Upload file</a></li>
+                            <li id="t-specialpages"><a href="/wiki/Special:SpecialPages" title="A list of all special pages [alt-shift-q]" accesskey="q">Special pages</a></li>
+                            <li id="t-permalink"><a href="/w/index.php?title=Earth&amp;oldid=583333745" title="Permanent link to this revision of the page">Permanent link</a></li>
+                            <li id="t-info"><a href="/w/index.php?title=Earth&amp;action=info">Page information</a></li>
+                            <li id="t-wikibase"><a href="//www.wikidata.org/wiki/Q2" title="Link to connected data repository item">Data item</a></li>
+                            <li id="t-cite"><a href="/w/index.php?title=Special:Cite&amp;page=Earth&amp;id=583333745" title="Information on how to cite this page">Cite this page</a></li>		<li id="t-articlefeedbackv5-add" class="articleFeedbackv5-trigger-link-holder articleFeedbackv5-trigger-link-holder-TBX"><a href="#">Add your feedback</a></li><li id="t-articlefeedbackv5-view" class="articleFeedbackv5-trigger-link-holder articleFeedbackv5-trigger-link-holder-TBX"><a href="/wiki/Special:ArticleFeedbackv5/Earth">View feedback</a></li></ul>
+                    </div>
+               </div>
+              <div class="portal collapsed" role="navigation" id="p-coll-print_export" aria-labelledby="p-coll-print_export-label">
+                    <h3 id="p-coll-print_export-label" tabindex="4"><a href="javascript:ShowDiv('p-collBody','p-coll-print_export');">Print/export</a></h3>
+                    <div class="body" style="display:none" id="p-collBody">
+                        <ul id="p-coll-print_export-list">
+                            <li id="coll-create_a_book"><a href="/w/index.php?title=Special:Book&amp;bookcmd=book_creator&amp;referer=Earth">Create a book</a></li>
+                            <li id="coll-download-as-rl"><a href="/w/index.php?title=Special:Book&amp;bookcmd=render_article&amp;arttitle=Earth&amp;oldid=583333745&amp;writer=rl">Download as PDF</a></li>
+                            <li id="t-print"><a href="/w/index.php?title=Earth&amp;printable=yes" title="Printable version of this page [alt-shift-p]" accesskey="p">Printable version</a></li>
+                        </ul>
+                    </div>
+              </div>
+            </div>
+
+
+        </div>
+        <div id="footer" role="contentinfo">
+
+			<ul id="footer-places">
+				<li id="footer-places-privacy"><a href="//wikimediafoundation.org/wiki/Privacy_policy" title="wikimedia:Privacy policy">Privacy policy</a></li>
+				<li id="footer-places-about"><a href="/wiki/Wikipedia:About" title="Wikipedia:About">About Wikipedia</a></li>
+			    <li id="footer-places-disclaimer"><a href="/wiki/Wikipedia:General_disclaimer" title="Wikipedia:General disclaimer">Disclaimers</a></li>
+				<li id="footer-places-contact"><a href="//en.wikipedia.org/wiki/Wikipedia:Contact_us">Contact Wikipedia</a></li>
+				<li id="footer-places-developers"><a class="external" href="https://www.mediawiki.org/wiki/Special:MyLanguage/How_to_contribute">Developers</a></li>
+				<li id="footer-places-mobileview"><a href="//en.m.wikipedia.org/w/index.php?title=Earth&amp;title=Earth" class="noprint stopMobileRedirectToggle">Mobile view</a></li>
+			</ul>
+			<ul id="footer-icons" class="noprint">
+				<li id="footer-copyrightico">
+			    	<a href="//wikimediafoundation.org/"><img src="{% static 'css/images2/wikimedia-button.png' %} " width="88" height="31" alt="Wikimedia Foundation"></a>
+				</li>
+				<li id="footer-poweredbyico">
+					<a href="//www.mediawiki.org/"><img src="{% static 'css/images2/poweredby_mediawiki_88x31.png' %}" alt="Powered by MediaWiki" width="88" height="31"></a>
+				</li>
+			</ul>
+			<div style="clear:both"></div>
+		</div>
+
+    </body>
+</html>

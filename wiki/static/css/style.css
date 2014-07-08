@@ -1,0 +1,203 @@
+
+
+.textEditor * {
+	margin:0px; padding:0px;
+	outline:none;
+}
+
+.textEditor a:link,
+.textEditor a:visited {
+	color:#000;
+	text-decoration:none;
+}
+
+.textEditor  {
+	width:700px;
+	margin:5px 0 5px 0;
+	border:5px solid #F5F5F5;
+    margin-left: 0px;
+}
+#showText h1{
+    font-family: TimesNewRoman;
+    color:red;
+    
+}
+#showText a:link{
+    text-decoration: underline;
+    color:blue;
+}
+.textEditorContainer  {
+	border:1px solid #3C769D;	
+	background:#F5F6F7;
+	padding:5px 5px 2px 5px;
+	font:11px Verdana, Arial, Helvetica, sans-serif;
+}
+.textEditorArea {
+	font:12px 'Courier New', Courier, monospace;
+	padding:5px 5px 5px 35px;
+	border:3px solid #3C769D;
+	width:643px;
+	height:390px;
+	background:#FFF url(images/editor.png) no-repeat;
+	clear:both;
+	line-height:18px;
+	overflow:auto;
+}
+
+.textEditorHeader ul a {
+        display: block;
+        width: 16px;
+        height: 16px;
+        text-indent: -10000px;
+        background-repeat: no-repeat;
+        padding: 3px;
+        margin: 0px;
+}
+
+.textEditorHeader ul li	{
+	list-style:none;
+	float:left;
+	position:relative;
+}
+.textEditorHeader ul li ul{
+	display:none;
+}
+
+.textEditorHeader ul li:hover > ul{
+	display:block;
+}
+
+.markItUpHeader ul ul {
+display: none;
+position: absolute;
+top: 18px;
+left: 0px;
+background: #F5F5F5;
+border: 1px solid #3C769D;
+
+padding: 0;
+}
+
+.textEditorHeader ul .textEditorDropMenu {
+	background:transparent url(./images/dropdown.png) no-repeat 115% 50%;
+	margin-right:5px;
+}
+.textEditorHeader ul .textEditorDropMenu li {
+	margin-right:0px;
+}
+
+.textEditorHeader ul .textEditorSeparator {
+	margin:0 10px;
+	width:1px;
+	height:16px;
+	overflow:hidden;
+	background-color:#CCC;
+}
+
+
+.textEditor .textEditorButton1 a {
+	background-image:url(./images/bold.png);
+}
+.textEditor .textEditorButton2 a {
+	background-image:url(./images/italic.png);
+}
+.textEditor .textEditorButton3 a {
+	background-image:url(./images/stroke.png);
+}
+
+.textEditor .textEditorButton4 a {
+	background-image:url(./images/list-bullet.png); 
+}
+.textEditor .textEditorButton5 a {
+	background-image:url(./images/list-numeric.png);
+}
+.textEditor .textEditorButton6 a {
+	background-image:url(./images/h1.png);
+}
+.textEditor .textEditorButton7 a {
+	background-image:url(./images/h2.png);
+}
+.textEditor .textEditorButton8 a {
+	background-image:url(./images/image.png);
+}
+.textEditor .textEditorButton9 a {
+	background-image:url(./images/link.png);
+}
+.textEditor .textEditorButton10 input {
+	background-image:url(./images/preview.png);
+    background-color: transparent; /* make the button transparent */
+    background-repeat: no-repeat;  /* make the background image appear only once */
+    background-position: 0px 0px;  /* equivalent to 'top left' */
+    border: none;           /* assuming we don't want any borders */
+    cursor: pointer;        /* make the cursor like hovering over an <a> element */
+    height:16px;   /* make this the size of your image */
+    width:16px;
+}
+.textEditor .textEditorButton11 a {
+	background-image:url(./images/underline.png);
+}
+.textEditor .textEditorButton12 a {
+	background-image:url(./images/date.png);
+}
+
+.textEditor .colors a {
+	background-image:url(./images/colors.png);
+}
+	.textEditor .colors ul {
+		width:81px;
+		padding:1px;
+                position:absolute;
+                z-index: 2;
+                border: 1px solid blue;
+               
+	}
+	.textEditor .colors  li {
+		border:1px solid white;
+		width:25px;	
+                height:25px;
+		overflow:hidden;
+		padding:0px; 
+                margin:0px;
+		float:left;
+	}
+	.textEditor .colors ul a {
+		width:25px;	
+                height:25px;
+	}
+	.textEditor .colors ul a:hover {
+		background-color:none;
+	}
+	
+	.textEditor .colors .col1-1 a {
+		background:yellow;
+	}
+	.textEditor .colors .col1-2 a {
+		background:orange;
+	}
+	.textEditor .colors .col1-3 a {
+		background:red;
+	}
+	
+	.textEditor .colors .col2-1 a {
+		background:blue;
+	}
+	.textEditor .colors .col2-2 a {
+		background:purple;
+	}
+	.textEditor .colors .col2-3 a {
+		background:green;
+	}
+	
+	.textEditor .colors .col3-1 a {
+		background:white;
+	}
+	.textEditor .colors .col3-2 a {
+		background:gray;
+	}
+	.textEditor .colors .col3-3 a {
+		background:black;
+	}
+
+.hide{
+        display: none;
+}

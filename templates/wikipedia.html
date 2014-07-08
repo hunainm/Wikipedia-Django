@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% load staticfiles %}
+<html>  
+    <head>
+        <title>Wikipedia</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" type="text/css" href="{%  static 'css/wikipedia.css' %}"/>
+        <script src="{% static 'js/wiki.js' %}" type="text/javascript"></script>
+
+    </head>
+
+    <body id="www-wikipedia-org">
+        <div id="mw-navigation">
+            <div id="mw-head">
+                <div id="p-personal" role="navigation" aria-labelledby="p-personal-label">
+
+	               <ul>{% if request.user.is_authenticated %}
+                            <li id="pt-userpage"><a href="/wiki/User:Hunain60" class="new" title="Your user page [alt-shift-.]" accesskey=".">{{ request.user.username }}</a></li>
+                            <li id="pt-notifications"><a href="javascript:ViewNotifications();return false;" class="mw-echo-notifications-badge" title="Your notifications">{{ number }}</a>
+                             <div style="display:none" id="notify">   <div class="mw-echo-overlay-pokey" display="none"></div>
+                                <div class="mw-echo-overlay">
+                                    <div class="mw-echo-overlay-title">
+                                        <div id="mw-echo-overlay-title-text"><b>Notifications</b></div>
+                                    </div>
+                                    <ul class="mw-echo-notifications" style="max-height: 190px;">
+                                        {% for i in notifications %}
+                                        <li class="mw-echo-notification">
+                                        <a  href="{{i.link }}" style="color:black">
+                                            <div class="mw-echo-notification-wrapper">
+                                                <div class="mw-echo-state"><img class="mw-echo-icon" src="{% static 'css/images2/notification.png' %}"/>
+                                                    <div class="mw-echo-content">
+                                                        <div class="mw-echo-title">{{i.message}}</div>
+                                                        <div class="mw-echo-notification-footer">{{i.date}}</div>
+                                                        <a href="{{ i.link }}"  class="mw-echo-notification-primary-link"></a>
+                                                    </div>
+                                                </div>
+                                          </div>
+                                             </a>
+
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                    <div id="mw-echo-overlay-footer"><a id="mw-echo-overlay-link" class="mw-echo-grey-link" href="/wiki/Special:Notifications">All notifications</a></div></div>
+
+                            </div>
+                            </li>
+                            <li id="pt-mytalk"><a href="/wiki/User_talk:Hunain60" class="new" title="Your talk page [alt-shift-n]" accesskey="n">Talk</a></li>
+                            <li id="pt-mysandbox"><a href="#" title="Go to your sandbox">Sandbox</a></li>
+                            <li id="pt-preferences"><a href="#" title="Your preferences">Preferences</a></li><li id="pt-betafeatures"><a href="/wiki/Special:Preferences#mw-prefsection-betafeatures">Beta</a></li>
+                            <li id="pt-watchlist"><a href="/wiki/" title="Create a new Page" accesskey="l">Create Page</a></li>
+                            <li id="pt-mycontris"><a href="/Contributions/?id={{ request.user.id }}" title="A list of your contributions [alt-shift-y]" accesskey="y">Contributions</a></li>
+                            <li id="pt-logout"><a href="/logout/" title="Log out">Log out</a></li>
+                        {% else %}
+                            <li id="pt-createaccount"><a href="/CreateAccount/">Create account</a></li>
+                            <li id="pt-login"><a href="/login/" title="You're encouraged to log in; however, it's not mandatory. [alt-shift-o]" accesskey="o">Log in</a></li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="central-textlogo">
+            <img src="{% static 'css/images2/Wikipedia.png' %}" width="174" height="30" alt="WikipediA" title="Wikipedia" style="font-variant: small-caps;"></img>
+        </div>
+
+        <div class="central-featured">
+            <div class="central-featured-logo">
+                <div class="central-featured-logo-inner">
+                    <img src="{% static 'css/images2/Wikipedia-logo.png' %}" width="200" height="200" alt="Wikipedia" title="Wikipedia"/>
+                 </div>
+            </div>
+
+
+        <div class="central-featured-lang lang1" lang="en">
+            <a class="link-box" href="//en.wikipedia.org/" title="English — Wikipedia — The Free Encyclopedia">
+                <strong>English</strong></br>
+                <em>The&nbsp;Free&nbsp;Encyclopedia</em><br>
+                <small>4&nbsp;334&nbsp;000+&nbsp;articles</small>
+            </a>
+        </div>
+
+        <div class="central-featured-lang lang2" lang="es">
+        <a class="link-box" href="//es.wikipedia.org/" title="Español — Wikipedia — La enciclopedia libre">
+            <strong>Español</strong></br>
+            <em>La&nbsp;enciclopedia&nbsp;libre</em></br>
+            <small>1&nbsp;047&nbsp;000+&nbsp;artículos</small></a>
+        </div>
+
+        <!-- #3. ru.wikipedia.org - 1,710,812 views/hr -->
+        <div class="central-featured-lang lang3" lang="ru">
+            <a class="link-box" href="//ru.wikipedia.org/" title="Russkiy — Wikipedia — Свободная энциклопедия"><strong>Русский</strong><br>
+            <em>Свободная&nbsp;энциклопедия</em></br>
+            <small>1&nbsp;046&nbsp;000+&nbsp;статей</small></a>
+        </div>
+
+        <!-- #4. ja.wikipedia.org - 1,581,173 views/hr -->
+        <div class="central-featured-lang lang4" lang="ja">
+            <a class="link-box" href="//ja.wikipedia.org/" title="Nihongo — Wikipedia — フリー百科事典"><strong>日本語</strong><br>
+            <em class="emNonItalicLang">フリー百科事典</em></br>
+            <small>876&nbsp;000+&nbsp;記事</small></a>
+        </div>
+
+        <!-- #5. de.wikipedia.org - 1,304,799 views/hr -->
+        <div class="central-featured-lang lang5" lang="de">
+            <a class="link-box" href="//de.wikipedia.org/" title="Deutsch — Wikipedia — Die freie Enzyklopädie"><strong>Deutsch</strong><br>
+            <em>Die&nbsp;freie&nbsp;Enzyklopädie</em></br>
+            <small>1&nbsp;633&nbsp;000+&nbsp;Artikel</small></a>
+        </div>
+
+        <!-- #6. fr.wikipedia.org - 909,644 views/hr -->
+        <div class="central-featured-lang lang6" lang="fr">
+            <a class="link-box" href="//fr.wikipedia.org/" title="Français — Wikipedia — L’encyclopédie libre"><strong>Français</strong><br>
+            <em>L’encyclopédie&nbsp;libre</em></br>
+            <small>1&nbsp;429&nbsp;000+&nbsp;articles</small></a>
+        </div>
+
+        <!-- #7. pl.wikipedia.org - 683,042 views/hr -->
+        <div class="central-featured-lang lang7" lang="pl">
+            <a class="link-box" href="//pl.wikipedia.org/" title="Polski — Wikipedia — Wolna encyklopedia"><strong>Polski</strong><br>
+            <em>Wolna&nbsp;encyklopedia</em></br>
+            <small>1&nbsp;000&nbsp;000+&nbsp;haseł</small></a>
+        </div>
+
+        <!-- #8. it.wikipedia.org - 675,506 views/hr -->
+        <div class="central-featured-lang lang8" lang="it">
+            <a class="link-box" href="//it.wikipedia.org/" title="Italiano — Wikipedia — L’enciclopedia libera"><strong>Italiano</strong><br>
+            <em>L’enciclopedia&nbsp;libera</em></br>
+            <small>1&nbsp;066&nbsp;000+&nbsp;voci</small></a>
+        </div>
+
+        <!-- #9. pt.wikipedia.org - 663,298 views/hr -->
+        <div class="central-featured-lang lang9" lang="pt">
+            <a class="link-box" href="//pt.wikipedia.org/" title="Português — Wikipedia — A enciclopédia livre"><strong>Português</strong><br>
+            <em>A&nbsp;enciclopédia&nbsp;livre</em></br>
+            <small>799&nbsp;000+&nbsp;artigos</small></a>
+        </div>
+
+        <!-- #10. zh.wikipedia.org - 524,333 views/hr -->
+        <div class="central-featured-lang lang10" lang="zh">
+            <a class="link-box" id="zh_top10" href="//zh.wikipedia.org/" title="Zhōngwén — Wikipedia — 自由的百科全書" data-converttitle-hans="Zhōngwén — Wikipedia — 自由的百科全书"><strong>中文</strong><br>
+            <em id="zh_tag" class="emNonItalicLang" data-convert-hans="自由的百科全书">自由的百科全書</em></br>
+            <small>726&nbsp;000+&nbsp;<span id="zh_art" data-convert-hans="条目">條目</span></small></a>
+        </div>
+
+        </div>
+
+        <!-- Search form -->
+        <div class="search-container">
+             <form action="/SearchAcrossTitles/" method="post" class="search-form"> {% csrf_token %}
+
+                <fieldset>
+
+                    <input type="hidden" name="family" value="wikipedia"/>
+
+                    <input id="searchInput" name="search" type="search" size="20" autofocus="autofocus" accesskey="F" autocomplete="off" list="suggestions"/>
+
+                    <select id="searchLanguage" name="language">
+                        <option value="ar" lang="ar">العربية</option><!-- Al-ʿArabīyah -->
+                        <option value="bg" lang="bg">Български</option><!-- Bulgarski -->
+                        <option value="ca" lang="ca">Català</option>
+                        <option value="ceb" lang="ceb">Sinugboanong Binisaya</option><!-- Cebuano -->
+                        <option value="cs" lang="cs">Česky</option>
+                        <option value="da" lang="da">Dansk</option>
+                        <option value="de" lang="de">Deutsch</option>
+                        <option value="en" lang="en" selected="selected">English</option>
+                        <option value="es" lang="es">Español</option>
+                        <option value="eo" lang="eo">Esperanto</option>
+                        <option value="et" lang="et">Eesti</option>
+                        <option value="eu" lang="eu">Euskara</option>
+                        <option value="fa" lang="fa">فارسی</option><!-- Fārsi -->
+                        <option value="fr" lang="fr">Français</option>
+                        <option value="gl" lang="gl">Galego</option>
+                        <option value="ko" lang="ko">한국어</option><!-- Hangugeo -->
+                        <option value="hi" lang="hi">हिन्दी</option><!-- Hindī -->
+                        <option value="hr" lang="hr">Hrvatski</option>
+                        <option value="id" lang="id">Bahasa Indonesia</option>
+                        <option value="it" lang="it">Italiano</option>
+                        <option value="he" lang="he">עברית</option><!-- ‘Ivrit -->
+                        <option value="lt" lang="lt">Lietuvių</option>
+                        <option value="hu" lang="hu">Magyar</option>
+                        <option value="ms" lang="ms">Bahasa Melayu</option>
+                        <option value="min" lang="min">Bahaso Minangkabau</option>
+                        <option value="nl" lang="nl">Nederlands</option>
+                        <option value="ja" lang="ja">日本語</option><!-- Nihongo -->
+                        <option value="no" lang="nb">Norsk (bokmål)</option>
+                        <option value="nn" lang="nn">Norsk (nynorsk)</option>
+                        <option value="uz" lang="uz">Oʻzbekcha</option>
+                        <option value="pl" lang="pl">Polski</option>
+                        <option value="pt" lang="pt">Português</option>
+                        <option value="kk" lang="kk">Қазақша / Qazaqşa / قازاقشا</option>
+                        <option value="ro" lang="ro">Română</option>
+                        <option value="ru" lang="ru">Русский</option><!-- Russkiy -->
+                        <option value="simple" lang="en">Simple English</option>
+                        <option value="sk" lang="sk">Slovenčina</option>
+                        <option value="sl" lang="sl">Slovenščina</option>
+                        <option value="sr" lang="sr">Српски / Srpski</option>
+                        <option value="fi" lang="fi">Suomi</option>
+                        <option value="sv" lang="sv">Svenska</option>
+                        <option value="tr" lang="tr">Türkçe</option>
+                        <option value="uk" lang="uk">Українська</option><!-- Ukrayins’ka -->
+                        <option value="vi" lang="vi">Tiếng Việt</option>
+                        <option value="vo" lang="vo">Volapük</option>
+                        <option value="war" lang="war">Winaray</option>
+                        <option value="zh" lang="zh">中文</option><!-- Zhōngwén -->
+                    </select>
+
+                    <input class="formBtn" type="submit" value="  →  " name="go">
+                    <input type="hidden" value="Go" name="go">
+
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="divider" style="padding: 0 1%;"><hr></div>
+
+        <div class="bookshelf-container">
+            <div class="bookshelf">
+                <img src="{% static 'css/images2/Bookshelf.png' %}" >
+                &nbsp;<b>1&nbsp;000&nbsp;000+</b>&nbsp;
+                <img src="{% static 'css/images2/Bookshelf.png' %}" >
+            </div>
+        </div>
+
+        <div class="langlist langlist-large">
+           <a href="//de.wikipedia.org/" lang="de">Deutsch</a>&nbsp;•
+           <a href="//en.wikipedia.org/" lang="en">English</a>&nbsp;•
+           <a href="//es.wikipedia.org/" lang="es">Español</a>&nbsp;•
+           <a href="//fr.wikipedia.org/" lang="fr">Français</a>&nbsp;•
+           <a href="//it.wikipedia.org/" lang="it">Italiano</a>&nbsp;•
+           <a href="//nl.wikipedia.org/" lang="nl">Nederlands</a>&nbsp;•
+           <a href="//pl.wikipedia.org/" lang="pl">Polski</a>&nbsp;•
+           <a href="//ru.wikipedia.org/" lang="ru" title="Russkiy">Русский</a>&nbsp;•
+           <a href="//sv.wikipedia.org/" lang="sv">Svenska</a>
+        </div>
+
+
+        <div class="divider" style="padding: 0 1%;"><hr></div>
+
+        <div class="otherprojects">
+
+            <div class="otherprojects-item">
+                <div style="margin-top: 12px;">&nbsp;&nbsp;<a href="//www.wiktionary.org/" title="Wiktionary"><img src="{% static 'css/images2/Wiktionary-logo-en-35px.png' %}" width="35" height="38" alt="Wiktionary" title="Wiktionary"></a>&nbsp;
+                    <a href="//www.wiktionary.org/" title="Wiktionary">Wiktionary</a>
+                </div>
+            </div>
+
+            <div class="otherprojects-item">
+                <div style="margin-top: 19px;">&nbsp;&nbsp;<a href="//www.wikinews.org/" title="Wikinews"><img src="{% static 'css/images2/35px-Wikinews-logo.png' %}" width="35" height="18" alt="Wikinews" title="Wikinews"></a>&nbsp;
+                    <a href="//www.wikinews.org/" title="Wikinews">Wikinews</a>
+                </div>
+            </div>
+
+            <div class="otherprojects-item">
+                <div style="margin-top: 10px;">&nbsp;&nbsp;
+                    <a href="//www.wikiquote.org/" title="Wikiquote"><img src="{% static 'css/images2/Wikiquote-logo.svg.png' %}" width="35" height="41" alt="Wikiquote" title="Wikiquote"></a>&nbsp;<a href="//www.wikiquote.org/" title="Wikiquote">Wikiquote</a>
+                </div>
+            </div>
+
+            <div class="otherprojects-item">
+                <div style="margin-top: 11px;">&nbsp;&nbsp;
+                    <a href="//www.wikibooks.org/" title="Wikibooks"><img src="{% static 'css/images2/Wikibooks-logo.svg.png' %}" width="35" height="35" alt="Wikibooks" title="Wikibooks"></a>&nbsp;<a href="//www.wikibooks.org/" title="Wikibooks">Wikibooks</a>
+                </div>
+            </div>
+
+            <div class="otherprojects-item">
+                <div style="margin-top: 21px;">&nbsp;&nbsp;
+                    <a href="//www.wikidata.org/" title="Wikidata"><img src="{% static 'css/images2/Wikidata-logo.svg.png' %}" width="47" height="26" alt="Wikidata" title="Wikidata"></a>&nbsp;<a href="//www.wikidata.org/" title="Wikidata">Wikidata</a>
+                </div>
+            </div>
+
+            <div class="otherprojects-item">
+                <div style="margin-top: 13px;">&nbsp;&nbsp;
+                    <a href="//species.wikimedia.org/" title="Wikispecies, a free directory of life!"><img src="{% static 'css/images2/Wikispecies-logo.svg.png' %}" width="35" height="41" alt="Wikispecies" title="Wikispecies, a free directory of life!"></a>&nbsp;<a href="//species.wikimedia.org/" title="Wikispecies, a free directory of life!">Wikispecies</a>
+                </div>
+            </div>
+
+            <div class="otherprojects-item">
+                <div style="margin-top: 10px;">&nbsp;&nbsp;
+                    <a href="//www.wikisource.org/" title="Wikisource"><img src="{% static 'css/images2/Wikisource-logo.svg.png' %}" width="35" height="37" alt="Wikisource" title="Wikisource"></a>&nbsp;<a href="//www.wikisource.org/" title="Wikisource">Wikisource</a>
+                </div>
+            </div>
+
+            <div class="otherprojects-item">
+                <div style="margin-top: 22px;">&nbsp;&nbsp;
+                    <a href="//www.wikiversity.org/" title="Wikiversity"><img src="{% static 'css/images2/Wikiversity-logo.svg.png' %}" width="35" height="28" alt="Wikiversity" title="Wikiversity"></a>&nbsp;<a href="//www.wikiversity.org/" title="Wikiversity">Wikiversity</a>
+                </div>
+            </div>
+
+            <div class="otherprojects-item">
+                <div style="margin-top: 13px;">&nbsp;&nbsp;
+                    <a href="//www.wikivoyage.org/" title="Wikivoyage"><img src="{% static 'css/images2/Wikivoyage-Logo-v3-icon.svg.png' %}" width="35" height="35" alt="Wikivoyage" title="Wikivoyage"></a>&nbsp;<a href="//www.wikivoyage.org/" title="Wikivoyage">Wikivoyage</a>
+                </div>
+            </div>
+
+            <div class="otherprojects-item">
+                <div style="margin-top: 7px;">&nbsp;&nbsp;
+                    <a href="//commons.wikimedia.org/" title="Wikimedia Commons — Free media repository"><img src="{% static 'css/images2/Commons-logo.svg.png' %}" width="35" height="47" alt="Wikimedia Commons" title="Wikimedia Commons — Free media repository"></a>&nbsp;<a href="//commons.wikimedia.org/" title="Wikimedia Commons — Free media repository">Commons</a>
+                </div>
+            </div>
+
+            <div class="otherprojects-item">
+                <div style="margin-top: 21px;">&nbsp;&nbsp;
+                    <a href="//www.mediawiki.org/" title="MediaWiki"><img src="{% static 'css/images2/Mediawiki-logo.png' %}" width="35" height="26" alt="MediaWiki" title="MediaWiki"></a>&nbsp;<a href="//www.mediawiki.org/" title="MediaWiki">MediaWiki</a>
+                </div>
+            </div>
+
+            <div class="otherprojects-item">
+                <div style="margin-top: 13px;">&nbsp;&nbsp;
+                    <a href="//meta.wikimedia.org/" title="Wikimedia project coordination"><img src="{% static 'css/images2/Wikimedia_Community_Logo.svg.png' %}" width="35" height="35" alt="Meta-Wiki" title="Wikimedia project coordination"></a>&nbsp;<a href="//meta.wikimedia.org/" title="Wikimedia project coordination">Meta-Wiki</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="wm-site-info">
+            <a href="//wikimediafoundation.org/" title="A Wikimedia Project">
+                <img src="{% static 'css/images2/wikimedia-button.png' %}" width="88" height="31" alt="Wikimedia" title="A Wikimedia Project"/>
+            </a>
+        </div>
+
+        <div style="text-align:center"><a href="//wikimediafoundation.org/wiki/Terms_of_Use">Terms of Use</a> | <a href="//wikimediafoundation.org/wiki/Privacy_policy">Privacy Policy</a></div>
+    </body>
+</html>
